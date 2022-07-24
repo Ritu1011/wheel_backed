@@ -1,12 +1,12 @@
 const express =require("express")
-const  Dinner=require("../models/dinner.model")
+const AllFood=require("../models/allfood.model")
 
 const router=express.Router()
 
 router.get("", async (req, res) => {
     try {
-      const dinner = await Dinner.find().lean().exec();
-      return res.status(200).send(dinner); // []
+      const allfood = await AllFood.find().lean().exec();
+      return res.status(200).send(allfood ); // []
     } catch (err) {
       return res
         .status(500)
@@ -16,8 +16,8 @@ router.get("", async (req, res) => {
   
   router.post("", async (req, res) => {
     try {
-      const dinner = await Dinner.create(req.body);
-      return res.status(201).send(dinner );
+      const allfood  = await AllFood.create(req.body);
+      return res.status(201).send(allfood  );
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
@@ -27,10 +27,10 @@ router.get("", async (req, res) => {
   
   router.get("/:id", async (req, res) => {
     try {
-      const dinner = await Dinner.findById(req.params.id).lean().exec();
+      const allfood  = await AllFood.findById(req.params.id).lean().exec();
    
   
-      return res.status(200).send(dinner);
+      return res.status(200).send(allfood );
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
@@ -38,12 +38,12 @@ router.get("", async (req, res) => {
   
   router.patch("/:id", async (req, res) => {
     try {
-      const dinner= await Dinner.findByIdAndUpdate(req.params.id, req.body, {
+      const allfood = await AllFood.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       })
         .lean()
         .exec();
-   return res.status(200).send(dinner);
+   return res.status(200).send(allfood );
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
@@ -51,8 +51,8 @@ router.get("", async (req, res) => {
   
   router.delete("/:id", async (req, res) => {
     try {
-      const dinner  = await Dinner.findByIdAndDelete(req.params.id).lean().exec();
-       return res.status(200).send(dinner );
+      const allfood   = await AllFood.findByIdAndDelete(req.params.id).lean().exec();
+       return res.status(200).send(allfood);
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }

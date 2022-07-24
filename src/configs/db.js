@@ -7,6 +7,5 @@ module.exports=()=>{
         console.log("Database connected successuly");
         }).catch((err)=>{
             console.log(err);
-        
-    })
+       })
   };
